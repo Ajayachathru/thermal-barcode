@@ -16,11 +16,11 @@ export class AppComponent implements OnInit {
   }
 
   private convertThermalLabelToPrinterFormat() {
-    this.thermalApiService.convertThermalLabelToPrinterFormat('').subscribe(
-      (res) => {},
-      (err) => {
-        console.error('Sorry something went wrong, Please contact admin !');
-      }
-    );
+    this.thermalApiService.convertThermalLabelToPrinterFormat().subscribe({
+      next: (x) => {
+        console.log(x);
+      },
+      error: (err) => console.error('Something went wrong, : ' + err),
+    });
   }
 }
