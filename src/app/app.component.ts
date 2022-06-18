@@ -9,6 +9,9 @@ import { ThermalApiService } from './thermal-api.service';
 export class AppComponent implements OnInit {
   title = 'Thermal Image Converter';
 
+  barCodeImageBlobResponse: string;
+  barCodeGenerationInProgress = false;
+
   constructor(private thermalApiService: ThermalApiService) {}
 
   ngOnInit() {
@@ -16,11 +19,19 @@ export class AppComponent implements OnInit {
   }
 
   private convertThermalLabelToPrinterFormat() {
+    this.barCodeGenerationInProgress = true;
+    this.barCodeImageBlobResponse = '';
     this.thermalApiService.convertThermalLabelToPrinterFormat().subscribe({
-      next: (x) => {
-        console.log(x);
+      next: (res) => {
+        setTimeout(() => {
+          this.barCodeImageBlobResponse = res;
+          this.barCodeGenerationInProgress = false;
+        }, 100);
       },
-      error: (err) => console.error('Something went wrong, : ' + err),
+      error: (err) => {
+        this.barCodeGenerationInProgress = false;
+        console.error('Something went wrong, : ' + err);
+      },
     });
   }
 }

@@ -1,1 +1,21 @@
 <h1>{{ title }}</h1>
+
+<ng-container
+  *ngIf="!barCodeGenerationInProgress; else barCodeGenerationInProgressTpl"
+>
+  <h3 class="success">
+    Barcode Generated Using Thermal Web API
+    <button printSectionId="barcodeViewer" ngxPrint>Print</button>
+  </h3>
+
+  <div id="barcodeViewer">
+    <img
+      [attr.src]="'data:image/png;base64,' + barCodeImageBlobResponse"
+      alt="barocde"
+    />
+  </div>
+</ng-container>
+
+<ng-template #barCodeGenerationInProgressTpl>
+  <h3 class="warning">Generating barcode, Please wait ...</h3>
+</ng-template>

@@ -1,3 +1,23 @@
 p {
   font-family: Lato;
 }
+
+h1 {
+  text-align: center;
+  color: #3320ae;
+  font-weight: 500;
+}
+
+button {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  float: right;
+}
+
+.success {
+  color: green;
+}
+
+.warning {
+  color: #187c84;
+}
