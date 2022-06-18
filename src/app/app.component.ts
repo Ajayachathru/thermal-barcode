@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
         setTimeout(() => {
           this.barCodeImageBlobResponse = res;
           this.barCodeGenerationInProgress = false;
-        }, 100);
+        }, 2500);
       },
       error: (err) => {
         this.barCodeGenerationInProgress = false;
